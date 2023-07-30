@@ -1,5 +1,8 @@
-import React, { useState,useEffect } from "react";
-import Chart from 'chart.js/auto';
+import React, { useState, useEffect } from "react";
+import Chart from "chart.js/auto";
+import { useNavigate, Link } from "react-router-dom";
+import $ from "jquery";
+
 export default function Home() {
   const [selectedCurrency, setSelectedCurrency] = useState({
     imageSrc: "img/eth.svg",
@@ -44,6 +47,192 @@ export default function Home() {
     }
   };
   useEffect(() => {
+    // $(function () {
+    //   $(".team-slider").slick({
+    //     dots: true,
+    //     infinite: true,
+    //     arrows: false,
+    //     speed: 300,
+    //     slidesToShow: 3,
+    //     slidesToScroll: 1,
+    //     autoplay: true,
+    //     autoplaySpeed: 2000,
+    //     responsive: [
+    //       {
+    //         breakpoint: 1024,
+    //         settings: {
+    //           slidesToShow: 3,
+    //           slidesToScroll: 3,
+    //           infinite: true,
+    //           dots: true,
+    //         },
+    //       },
+    //       {
+    //         breakpoint: 768,
+    //         settings: {
+    //           slidesToShow: 2,
+    //           slidesToScroll: 1,
+    //           arrows: true,
+    //           autoplay: false,
+    //           dots: false,
+    //         },
+    //       },
+    //       {
+    //         breakpoint: 480,
+    //         settings: {
+    //           slidesToShow: 1,
+    //           slidesToScroll: 1,
+    //           arrows: true,
+    //           dots: false,
+    //         },
+    //       },
+    //       // You can unslick at a given breakpoint now by adding:
+    //       // settings: "unslick"
+    //       // instead of a settings object
+    //     ],
+    //   });
+    //   $(".animating").slick({
+    //     dots: true,
+    //     infinite: true,
+    //     arrows: false,
+    //     speed: 300,
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1,
+    //     responsive: [
+    //       {
+    //         breakpoint: 1024,
+    //         settings: {
+    //           slidesToShow: 3,
+    //           slidesToScroll: 3,
+    //           infinite: true,
+    //           dots: true,
+    //         },
+    //       },
+    //       {
+    //         breakpoint: 768,
+    //         settings: {
+    //           slidesToShow: 2,
+    //           slidesToScroll: 1,
+    //           arrows: true,
+    //           autoplay: false,
+    //           dots: false,
+    //         },
+    //       },
+    //       {
+    //         breakpoint: 480,
+    //         settings: {
+    //           slidesToShow: 1,
+    //           slidesToScroll: 1,
+    //           arrows: true,
+    //           dots: false,
+    //         },
+    //       },
+    //       // You can unslick at a given breakpoint now by adding:
+    //       // settings: "unslick"
+    //       // instead of a settings object
+    //     ],
+    //   });
+    // });
+    // let windowWidth = window.innerWidth;
+    // // console.log(windowWidth);
+    // if (windowWidth >= 1200) {
+    //   var Slider = (function () {
+    //     var total,
+    //       $slide,
+    //       $slider,
+    //       sliderWidth,
+    //       increment = 120;
+    //     var on = function () {
+    //       $slider = $(".slider");
+    //       $slide = $(".slide");
+    //       sliderWidth = $slider.width();
+    //       total = $slide.length;
+    //       position();
+    //     };
+    //     var position = function () {
+    //       var sign,
+    //         half = $(".active").index(),
+    //         x = 0,
+    //         z = 0,
+    //         zindex,
+    //         scaleX = 1.3,
+    //         scaleY = 1.3,
+    //         transformOrigin;
+    //       $slide.each(function (index, element) {
+    //         scaleX = scaleY = 1;
+    //         transformOrigin = sliderWidth / 2;
+    //         if (index < half) {
+    //           sign = 1;
+    //           zindex = index + 1;
+    //           x = sliderWidth / 2 - increment * (half - index + 1);
+    //           z = -increment * (half - index + 1);
+    //         } else if (index > half) {
+    //           sign = -1;
+    //           zindex = total - index;
+    //           x = sliderWidth / 2 + increment * (index - half + 1);
+    //           z = -increment * (index - half + 1);
+    //         } else {
+    //           sign = 0;
+    //           zindex = total;
+    //           x = sliderWidth / 2;
+    //           z = 1;
+    //           scaleX = scaleY = 1.2;
+    //           transformOrigin = "initial";
+    //         }
+    //         $(element).css({
+    //           transform:
+    //             "translate3d(" +
+    //             calculateX(x, sign, 300) +
+    //             "px, 0," +
+    //             z +
+    //             "px) scale3d(" +
+    //             scaleX +
+    //             "," +
+    //             scaleY +
+    //             ", 1)",
+    //           "z-index": zindex,
+    //           "transform-origin-x": transformOrigin,
+    //         });
+    //       });
+    //     };
+    //     var calculateX = function (position, sign, width) {
+    //       switch (sign) {
+    //         case 1:
+    //         case 0:
+    //           return position - width / 2;
+    //         case -1:
+    //           return position - width / 2;
+    //       }
+    //     };
+    //     var imageSize = function () {
+    //       return $slider.width() / 3;
+    //     };
+    //     var recalculateSizes = function () {
+    //       sliderWidth = $slider.width();
+    //       position();
+    //     };
+    //     var clickedImage = function () {
+    //       $(".active").removeClass("active");
+    //       $(this).addClass("active");
+    //       position();
+    //     };
+    //     var addEvents = function () {
+    //       $(window).resize(recalculateSizes);
+    //       $(document).on("click", ".slide", clickedImage);
+    //     };
+    //     return {
+    //       init: function () {
+    //         on();
+    //         addEvents();
+    //       },
+    //     };
+    //   })();
+    //   $(function () {
+    //     var slider = Slider.init();
+    //   });
+    // }
+  }, []);
+  useEffect(() => {
     const data = {
       labels: [
         "Ecosystem",
@@ -55,47 +244,48 @@ export default function Home() {
         "Development",
         "Public Sale",
         "Marketing",
-        "Airdrop"
+        "Airdrop",
       ],
-      datasets: [{
-        label: 'Tokenomics',
-        data: [35, 11, 5, 5, 5, 7, 10, 11, 10, 1],
-        backgroundColor: [
-          'rgba(255, 0, 0, 0.75)',
-          'rgba(255, 191, 0, 0.75)',
-          'rgba(255, 255, 0, 0.75)',
-          'rgba(0, 255, 64, 0.75)',
-          'rgba(0, 255, 255, 0.75)',
-          'rgba(0, 128, 255, 0.75)',
-          'rgba(0, 0, 255, 0.75)',
-          'rgba(255, 0, 255, 0.75)',
-          'rgba(255, 0, 128, 0.75)',
-          'rgba(253, 246, 241, 0.75)'
-        ],
-        borderColor: 'rgba(255, 124, 110, 0.1)',
-        hoverOffset: 4
-      }]
+      datasets: [
+        {
+          label: "Tokenomics",
+          data: [35, 11, 5, 5, 5, 7, 10, 11, 10, 1],
+          backgroundColor: [
+            "rgba(255, 0, 0, 0.75)",
+            "rgba(255, 191, 0, 0.75)",
+            "rgba(255, 255, 0, 0.75)",
+            "rgba(0, 255, 64, 0.75)",
+            "rgba(0, 255, 255, 0.75)",
+            "rgba(0, 128, 255, 0.75)",
+            "rgba(0, 0, 255, 0.75)",
+            "rgba(255, 0, 255, 0.75)",
+            "rgba(255, 0, 128, 0.75)",
+            "rgba(253, 246, 241, 0.75)",
+          ],
+          borderColor: "rgba(255, 124, 110, 0.1)",
+          hoverOffset: 4,
+        },
+      ],
     };
 
     const config = {
-      type: 'pie',
+      type: "pie",
       data: data,
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        animation: false
-      }
+        animation: false,
+      },
     };
 
     const myChart = new Chart(
-      document.getElementById('tokenomicsChart'),
+      document.getElementById("tokenomicsChart"),
       config
     );
     return () => {
-        myChart.destroy();
-      };
-    }, []);
-
+      myChart.destroy();
+    };
+  }, []);
 
   return (
     <div>
@@ -125,7 +315,10 @@ export default function Home() {
                         as in-game characters and allows players to mass produce
                         other NFTs.
                       </p>
-                      <a href="#" className="btn btn-blue fs-18 rounded-pill">
+                      <a
+                        href="#targetSection"
+                        className="btn btn-blue fs-18 rounded-pill"
+                      >
                         Buy $FLYY!
                       </a>
                     </div>
@@ -136,12 +329,16 @@ export default function Home() {
           </section>
           {/* <!-- Hero Section End --> */}
 
-          <div id="targetSection" className="size-wrap text-center">
+          <div
+            id="targetSection"
+            className="size-wrap text-center"
+            style={{ marginTop: "30px" }}
+          >
             <h1 className="fs-60 text-uppercase text-rose mb-2 mb-md-4 fw-bold">
               Pre-Sale Starts
             </h1>
             <h1 className="fs-50 text-uppercase text-rose mb-2 mb-md-4 fw-bold">
-              <span className="text-shadow">Aug. 26 @ 4 PM UTC</span>
+              <span>Aug. 26 @ 4 PM UTC</span>
             </h1>
           </div>
           {/* <!-- Card Section Start --> */}
@@ -772,7 +969,11 @@ export default function Home() {
                         Token<span className="text-shadow">omics</span>
                       </h2>
                       <div className="tokenomics-canvas">
-                        <canvas id="tokenomicsChart"  width="1116px" height="558px"></canvas>
+                        <canvas
+                          id="tokenomicsChart"
+                          width="1116px"
+                          height="558px"
+                        ></canvas>
                         {/* <!-- <img src="img/graph.png" id="graph-img"asdsad className="img-fluid"/> --> */}
                       </div>
                     </div>
@@ -1618,7 +1819,7 @@ export default function Home() {
                       <li className="ms-3">
                         <a href="https://t.me/FlyGuyzChat" target="_blank">
                           <img
-                           src="logos/insta.svg"  
+                            src="logos/insta.svg"
                             alt="Instagram"
                             width="25"
                             height="25"

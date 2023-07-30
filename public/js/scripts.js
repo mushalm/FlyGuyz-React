@@ -5,13 +5,13 @@
  */
 
 // nav-links array
-const navLinks = document.getElementsByClassName('nav-link');
-const checkBox = document.getElementById('flexCheckDefault');
-for(navLink of navLinks) {
-  navLink.addEventListener('click', () => {
-    checkBox.checked = false;
-  });
-}
+// const navLinks = document.getElementsByClassName('nav-link');
+// const checkBox = document.getElementById('flexCheckDefault');
+// for(navLink of navLinks) {
+//   navLink.addEventListener('click', () => {
+//     checkBox.checked = false;
+//   });
+// }
 
 /**
  * !=========================================
@@ -20,11 +20,11 @@ for(navLink of navLinks) {
  */
 
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-particlesJS.load('particles-js', 'js/particles/particles.json', function () { });
+particlesJS.load("particles-js", "js/particles/particles.json", function () {});
 
 // Document Ready Function Start
 jQuery(function () {
-  jQuery('.team-slider').slick({
+  jQuery(".team-slider").slick({
     dots: true,
     infinite: true,
     arrows: false,
@@ -40,8 +40,8 @@ jQuery(function () {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 768,
@@ -50,8 +50,8 @@ jQuery(function () {
           slidesToScroll: 1,
           arrows: true,
           autoplay: false,
-          dots: false
-        }
+          dots: false,
+        },
       },
       {
         breakpoint: 480,
@@ -59,15 +59,15 @@ jQuery(function () {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: true,
-          dots: false
-        }
-      }
+          dots: false,
+        },
+      },
       // You can unslick at a given breakpoint now by adding:
       // settings: "unslick"
       // instead of a settings object
-    ]
+    ],
   });
-  jQuery('.animating').slick({
+  jQuery(".animating").slick({
     dots: true,
     infinite: true,
     arrows: false,
@@ -81,8 +81,8 @@ jQuery(function () {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 768,
@@ -91,8 +91,8 @@ jQuery(function () {
           slidesToScroll: 1,
           arrows: true,
           autoplay: false,
-          dots: false
-        }
+          dots: false,
+        },
       },
       {
         breakpoint: 480,
@@ -100,13 +100,13 @@ jQuery(function () {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: true,
-          dots: false
-        }
-      }
+          dots: false,
+        },
+      },
       // You can unslick at a given breakpoint now by adding:
       // settings: "unslick"
       // instead of a settings object
-    ]
+    ],
   });
 });
 // Document Ready Function End
@@ -118,21 +118,32 @@ jQuery(function () {
  */
 
 let windowWidth = window.innerWidth;
-// console.log(windowWidth);
+console.log("windowWidth: " + windowWidth);
 
 if (windowWidth >= 1200) {
-  var Slider = function () {
-    var total, $slide, $slider, sliderWidth, increment = 120;
+  var Slider = (function () {
+    var total,
+      $slide,
+      $slider,
+      sliderWidth,
+      increment = 120;
     var on = function () {
-      $slider = $('.slider');
-      $slide = $('.slide');
+      $slider = $(".slider");
+      $slide = $(".slide");
       sliderWidth = $slider.width();
       total = $slide.length;
       position();
-    }
-  
+    };
+
     var position = function () {
-      var sign, half = $('.active').index(), x = 0, z = 0, zindex, scaleX = 1.3, scaleY = 1.3, transformOrigin;
+      var sign,
+        half = $(".active").index(),
+        x = 0,
+        z = 0,
+        zindex,
+        scaleX = 1.3,
+        scaleY = 1.3,
+        transformOrigin;
       $slide.each(function (index, element) {
         scaleX = scaleY = 1;
         transformOrigin = sliderWidth / 2;
@@ -142,7 +153,7 @@ if (windowWidth >= 1200) {
           x = sliderWidth / 2 - increment * (half - index + 1);
           z = -increment * (half - index + 1);
         } else if (index > half) {
-          sign = -1
+          sign = -1;
           zindex = total - index;
           x = sliderWidth / 2 + increment * (index - half + 1);
           z = -increment * (index - half + 1);
@@ -152,56 +163,65 @@ if (windowWidth >= 1200) {
           x = sliderWidth / 2;
           z = 1;
           scaleX = scaleY = 1.2;
-          transformOrigin = 'initial';
+          transformOrigin = "initial";
         }
-        $(element).css(
-          {
-            'transform': 'translate3d(' + calculateX(x, sign, 300) + 'px, 0,' + z + 'px) scale3d(' + scaleX + ',' + scaleY + ', 1)',
-            'z-index': zindex,
-            'transform-origin-x': transformOrigin
-          }
-        );
+        $(element).css({
+          transform:
+            "translate3d(" +
+            calculateX(x, sign, 300) +
+            "px, 0," +
+            z +
+            "px) scale3d(" +
+            scaleX +
+            "," +
+            scaleY +
+            ", 1)",
+          "z-index": zindex,
+          "transform-origin-x": transformOrigin,
+        });
       });
     };
-  
+
     var calculateX = function (position, sign, width) {
       switch (sign) {
         case 1:
-        case 0: return position - width / 2;
-        case -1: return position - width / 2;
+        case 0:
+          return position - width / 2;
+        case -1:
+          return position - width / 2;
       }
-    }
-  
+    };
+
     var imageSize = function () {
       return $slider.width() / 3;
-    }
-  
+    };
+
     var recalculateSizes = function () {
       sliderWidth = $slider.width();
       position();
-    }
-  
+    };
+
     var clickedImage = function () {
-      $('.active').removeClass('active');
-      $(this).addClass('active');
+      $(".active").removeClass("active");
+      $(this).addClass("active");
       position();
-    }
-  
+    };
+
     var addEvents = function () {
       $(window).resize(recalculateSizes);
-      $(document).on('click', '.slide', clickedImage);
-    }
-  
+      $(document).on("click", ".slide", clickedImage);
+    };
+
     return {
       init: function () {
         on();
         addEvents();
-      }
+      },
     };
-  }();
+  })();
   $(function () {
     var slider = Slider.init();
-  })
+  });
 }
 /**
  * !=======================================================
@@ -226,45 +246,43 @@ const data = {
     "Development",
     "Public Sale",
     "Marketing",
-    "Airdrop"
+    "Airdrop",
   ],
-  datasets: [{
-    label: 'Tokenomics',
-    data: [35, 11, 5, 5, 5, 7, 10, 11, 10, 1],
-    backgroundColor: [
-      'rgba(255, 0, 0, 0.75)',
-      'rgba(255, 191, 0, 0.75)',
-      'rgba(255, 255, 0, 0.75)',
-      'rgba(0, 255, 64, 0.75)',
-      'rgba(0, 255, 255, 0.75)',
-      'rgba(0, 128, 255, 0.75)',
-      'rgba(0, 0, 255, 0.75)',
-      'rgba(255, 0, 255, 0.75)',
-      'rgba(255, 0, 128, 0.75)',
-      'rgba(253, 246, 241, 0.75)'
-    ],
-    borderColor: 'rgba(255, 124, 110, 0.1)',
-    hoverOffset: 4
-  }]
+  datasets: [
+    {
+      label: "Tokenomics",
+      data: [35, 11, 5, 5, 5, 7, 10, 11, 10, 1],
+      backgroundColor: [
+        "rgba(255, 0, 0, 0.75)",
+        "rgba(255, 191, 0, 0.75)",
+        "rgba(255, 255, 0, 0.75)",
+        "rgba(0, 255, 64, 0.75)",
+        "rgba(0, 255, 255, 0.75)",
+        "rgba(0, 128, 255, 0.75)",
+        "rgba(0, 0, 255, 0.75)",
+        "rgba(255, 0, 255, 0.75)",
+        "rgba(255, 0, 128, 0.75)",
+        "rgba(253, 246, 241, 0.75)",
+      ],
+      borderColor: "rgba(255, 124, 110, 0.1)",
+      hoverOffset: 4,
+    },
+  ],
 };
 
 const config = {
-  type: 'pie',
+  type: "pie",
   data: data,
   options: {
     responsive: true,
-    maintainAspectRatio: true
-  }
+    maintainAspectRatio: true,
+  },
 };
 
-const myChart = new Chart(
-  document.getElementById('tokenomicsChart'),
-  config
-);
+const myChart = new Chart(document.getElementById("tokenomicsChart"), config);
 
 /**
  * !=======================================================
  * * Pie Chart End
  * !=======================================================
  */
-

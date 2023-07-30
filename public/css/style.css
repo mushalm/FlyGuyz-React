@@ -462,7 +462,7 @@ footer {
 -------------------------------*/
 .hero {
   padding-top: 15vh;
-  height: 100vh;
+  /* height: 100vh; */
   position: relative;
   overflow: hidden;
 }
@@ -871,6 +871,7 @@ footer {
 
   .carousel .carousel-photo {
     max-width: calc(100% / 2);
+
     flex: 0 0 calc(100% / 2);
   }
 
@@ -880,6 +881,7 @@ footer {
 
   .slide {
     backdrop-filter: none;
+    width: 300px;
   }
 
   .slide-container {
@@ -897,8 +899,8 @@ footer {
   }
 
   /* CARD STYLE START */
-  .container{
-    width:100% !important;
+  .container {
+    width: 100% !important;
   }
   .walletbox {
     background: #ffffff;
@@ -936,7 +938,7 @@ footer {
     display: flex !important;
     box-sizing: border-box;
     --tw-bg-opacity: 1;
-    margin-left:0px !important;
+    margin-left: 0px !important;
   }
   .rounded-3 {
     background-color: white;
@@ -1087,13 +1089,13 @@ footer {
   .d-block {
     display: block;
   }
-  
+
   .fw-bold {
     font-weight: 700 !important;
   }
   .text-rose {
     color: #fc3dbc;
-}
+  }
   .amountField {
     position: relative;
   }
@@ -1212,7 +1214,7 @@ footer {
     --bs-btn-disabled-bg: #f1f4f6;
     --bs-btn-disabled-border-color: #f1f4f6;
   }
-  
+
   /* CARD STYLE END */
 }
 .popup {
@@ -1581,7 +1583,14 @@ font-size: 0.9rem;
 }
 .text-shadow {
   color: #fff;
-  text-shadow: 0 0 7px rgba(var(--c_rose_rgb), 0.95), 0 0 10px rgba(var(--c_rose_rgb), 0.95), 0 0 21px rgba(var(--c_rose_rgb), 0.95), 0 0 42px rgba(var(--c_rose_rgb), 0.95), 0 0 82px rgba(var(--c_rose_rgb), 0.95), 0 0 92px rgba(var(--c_rose_rgb), 0.95), 0 0 102px rgba(var(--c_rose_rgb), 0.95), 0 0 151px rgba(var(--c_rose_rgb), 0.95);
+  text-shadow: 0 0 7px rgba(var(--c_rose_rgb), 0.95),
+    0 0 10px rgba(var(--c_rose_rgb), 0.95),
+    0 0 21px rgba(var(--c_rose_rgb), 0.95),
+    0 0 42px rgba(var(--c_rose_rgb), 0.95),
+    0 0 82px rgba(var(--c_rose_rgb), 0.95),
+    0 0 92px rgba(var(--c_rose_rgb), 0.95),
+    0 0 102px rgba(var(--c_rose_rgb), 0.95),
+    0 0 151px rgba(var(--c_rose_rgb), 0.95);
   transform: translateZ(0);
   will-change: transform;
 }
